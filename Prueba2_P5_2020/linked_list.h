@@ -1,12 +1,15 @@
 #ifndef _LINKED_LIST_H_
 #define _LINKED_LIST_H_
 
+
+template <typename TElem>
 class LinkedList
 {
 public:
     class Node
     {
     public:
+        
         Node(int val)
         : data(val), next(nullptr)
         {}
@@ -19,15 +22,15 @@ public:
     : head(nullptr), tail(nullptr)
     {}
 
-    LinkedList(const std::initializer_list<int>& init);
+        LinkedList(const std::initializer_list<TElem>& init);
     LinkedList(const LinkedList& other);
 
     ~LinkedList();
 
     std::string toString() const;
     int size() const;
-    void pushBack(int data);
-    void pushFront(int data);
+    void pushBack(TElem data);
+    void pushFront(Telem data);
 
     friend std::ostream& operator << (std::ostream& out, const LinkedList& lst);
 
