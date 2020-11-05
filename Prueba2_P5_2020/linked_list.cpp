@@ -1,8 +1,12 @@
+
 #include <iostream>
 #include <sstream>
 #include "linked_list.h"
 
-int LinkedList::size() const
+
+template<typename TElem>
+LinkedList<TElem>::LinkedList(const std::initializer_list<TElem>& init)
+: size_ (init.size(),head(nullptr),tail(nullptr))
 {
     Node *n = head;
     int sz = 0;
@@ -15,7 +19,8 @@ int LinkedList::size() const
     return sz;
 }
 
-void LinkedList::pushBack(int data)
+template<typename TElem>
+void LinkedList<TElem>::pushBack(TElem data)
 {
     Node *newn = new Node(data);
     if (head == nullptr)
@@ -29,7 +34,8 @@ void LinkedList::pushBack(int data)
     }
 }
 
-void LinkedList::pushFront(int data)
+template<typename TElem>
+void LinkedList<TElem>::pushFront(TElem data)
 {
     Node *newn = new Node(data);
     if (head == nullptr)
@@ -62,4 +68,33 @@ std::string LinkedList::toString() const
     out << "]";
     
     return out.str();
+}
+template<typename TElem>
+void LinkedList<TElem>::sort(){
+
+        
+        Node* temp = head; 
+  
+    
+    while (temp!=nullptr) { 
+        Node* min = temp; 
+        Node* aux = temp->next; 
+  
+        
+        while (aux) { 
+            if (min->data > aux->data) 
+                min = aux; 
+  
+            aux = aux->next; 
+        } 
+  
+        
+        TElem x = temp->data; 
+        temp->data = min->data; 
+        min->data = x; 
+        temp = temp->next; 
+    } 
+
+
+
 }
