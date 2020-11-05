@@ -8,17 +8,22 @@ template<typename TElem>
 LinkedList<TElem>::LinkedList(const std::initializer_list<TElem>& init)
 : size_ (init.size(),head(nullptr),tail(nullptr))
 {
-    Node *n = head;
-    int sz = 0;
-    while (n != nullptr)
-    {
-        sz++;
-        n = n->next;
-    }
-
-    return sz;
+    for(int i=0;i<init.size();i++){
+        pushBack(init[i]);
+    }    
 }
+template<typename TElem>
+LinkedList<TElem>::LinkedList(const LinkedList<TElem>& other){
 
+
+    Nodo* temp=other.head;
+
+    while(temp !=nullptr){
+
+        pushBack(temp->data);
+        temp=temp->next;
+    }
+}
 template<typename TElem>
 void LinkedList<TElem>::pushBack(TElem data)
 {
@@ -70,6 +75,13 @@ std::string LinkedList::toString() const
     return out.str();
 }
 template<typename TElem>
+LinkedList<TElem>::~LinkedList(){
+
+
+
+}
+
+template<typename TElem>
 void LinkedList<TElem>::sort(){
 
         
@@ -96,5 +108,51 @@ void LinkedList<TElem>::sort(){
     } 
 
 
+
+}
+template<typename TElem>
+bool LinkedList<TElem>::isSorted(){
+
+        Node *current;
+	        current = first;
+	        bool sortedlist;
+
+	   
+	   while(current->next != NULL)
+	   {
+	      if(current->data < current->next->data)
+
+	         sortedlist = true;
+
+	      else
+
+	         sortedlist = false;
+
+	   }
+	   if(sortedlist = false)
+	   {
+	      while(current->next != NULL)
+
+	      {
+
+	         if(current->data > current->next->data)
+
+	            sortedlist = true;
+
+	         else
+
+	            sortedlist = false;                  
+
+	       }
+	   }
+
+    if(sortedlist == true){
+
+        return true;
+    }else{
+        return false;
+    }
+
+	 
 
 }
