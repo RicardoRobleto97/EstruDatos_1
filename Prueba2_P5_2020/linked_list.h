@@ -12,7 +12,8 @@ public:
         
         Node(int val)
         : data(val), next(nullptr)
-        {}
+   
+         {}
         
         int data;
         Node *next;
@@ -22,6 +23,8 @@ public:
     : head(nullptr), tail(nullptr)
     {}
 
+       LinkedList& operator=(const LinkedList& rhs);
+
         LinkedList(const std::initializer_list<TElem>& init);
     LinkedList(const LinkedList& other);
 
@@ -30,13 +33,15 @@ public:
     std::string toString() const;
     int size() const;
     void pushBack(TElem data);
-    void pushFront(Telem data);
+    void pushFront(TElem data);
 
+    void sort();
+    bool isSorted();
     friend std::ostream& operator << (std::ostream& out, const LinkedList& lst);
 
 private:
     Node *head;
     Node *tail;
 };
-
+#include "linked_list.cpp"
 #endif
